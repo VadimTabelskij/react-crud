@@ -1,12 +1,14 @@
 import React from 'react';
 import ApiService from 'services/api-service';
-import { Box, Button, Container } from '@mui/material';
+import { Button, Container } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import routes from 'navigation/routes';
 import CarsCard from './cars-card';
-
 import * as Styled from './styled';
 
 const HomePage = () => {
   const [cars, setCars] = React.useState<CarsModel[]>([]);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     (async () => {
@@ -16,10 +18,10 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Container>
-      <Box sx={{ mt: 2 }}>
-        <Button variant="contained" size="large">Create Brand</Button>
-      </Box>
+    <Container sx={{ mt: 2 }}>
+      <Button variant="contained" onClick={() => navigate(routes.CarFormPage)}>
+        Created New
+      </Button>
       <Styled.CarsGrid>
         {cars.map((carsProps) => (<CarsCard key={carsProps.id} {...carsProps} />))}
       </Styled.CarsGrid>

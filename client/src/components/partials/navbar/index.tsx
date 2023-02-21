@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <AppBar position="fixed">
       <Container>
-        <Toolbar sx={{ justifyContent: { xs: 'flex-end', [extendBr]: 'flex-start' } }}>
+        <Toolbar sx={{ justifyContent: { xs: 'flex-end', [extendBr]: 'flex-start' }, p: { xs: 0, sm: 0 } }}>
           <NavbarDesktopMenu />
           <NavbarToggler isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
           <NavbarMobileMenu isDrawerOpen={isDrawerOpen} closeDrawer={closeDrawer} />

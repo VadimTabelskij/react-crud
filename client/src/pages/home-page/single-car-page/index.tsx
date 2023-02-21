@@ -1,6 +1,9 @@
 import React from 'react';
 import {
-  Box, Stack, styled,
+  Box,
+  Stack,
+  styled,
+  Container,
 } from '@mui/material';
 import routes from 'navigation/routes';
 import { useParams, Navigate } from 'react-router-dom';
@@ -9,7 +12,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCube, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 import 'swiper/css/effect-cube';
 import Img from 'components/ui/img';
 
@@ -35,12 +37,12 @@ const SingleCarPage = () => {
   if (car === undefined) return null;
 
   return (
-    <Box>
+    <Container>
       <Box component="pre">
         {JSON.stringify(car, null, 4)}
       </Box>
       <Box sx={{
-        width: 600,
+        width: 500,
         height: 400,
         margin: 'auto',
         position: 'relative',
@@ -86,7 +88,7 @@ const SingleCarPage = () => {
         }}
         />
       </Box>
-    </Box>
+    </Container>
   );
 };
 
