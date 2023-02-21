@@ -2,6 +2,7 @@ const singleCarPageRoot = '/car/';
 
 const routes = {
   HomePage: '/',
+  CarFormPage: '/create-car',
   SingleCarPage: {
     path: `${singleCarPageRoot}:id`,
     createLink: (id: string | number) => `${singleCarPageRoot}${id}`,

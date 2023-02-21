@@ -16,7 +16,7 @@ const fetchCars = async () => {
 };
 
 const fetchCar = async (id: string | number) => {
-  const response = await api.get<CarsModel[]>(`/cars/${id}`);
+  const response = await api.get<CarsModel>(`/cars/${id}`);
 
   return response.data;
 };

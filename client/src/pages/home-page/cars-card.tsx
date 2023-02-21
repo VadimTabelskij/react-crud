@@ -23,9 +23,10 @@ const CarsCard: React.FC<CarsCardProps> = ({
   const navigate = useNavigate();
 
   return (
+
     <Stack sx={{ boxShadow: 4 }}>
       <Styled.CarsCardContent>
-        <Img src={images[2]} alt="" sx={{ aspectRatio: '1.42', width: 1 }} />
+        <Img src={images[2]} alt="" sx={{ aspectRatio: '1.42', width: 1, height: 1 }} />
         <List>
           <Styled.CarsCardTarget>
             <Typography variant="subtitle2" sx={{ color: 'warning.main' }}>{brands}</Typography>
@@ -36,7 +37,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
         <Button
           color="primary"
           variant="contained"
-          sx={{ mt: 3 }}
+          sx={{ mt: 1 }}
           onClick={() => navigate(routes.SingleCarPage.createLink(id))}
         >
           View
