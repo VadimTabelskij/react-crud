@@ -1,15 +1,23 @@
 const singleCarPageRoot = '/car/';
 
-const routes = {
+const staticRoutes = {
   HomePage: '/',
   CarFormPage: '/create-car',
+} as const;
+
+const dynamicRoutes = {
   SingleCarPage: {
     path: `${singleCarPageRoot}:id`,
     createLink: (id: string | number) => `${singleCarPageRoot}${id}`,
   },
 } as const;
 
-export type Routes = typeof routes;
+const routes = {
+  ...staticRoutes,
+  ...dynamicRoutes,
+} as const;
+
+export type Routes = typeof staticRoutes;
 export type RouteLink = Routes[keyof Routes];
 
 export default routes;
