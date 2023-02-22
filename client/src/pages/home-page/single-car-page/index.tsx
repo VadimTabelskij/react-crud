@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  Box,
-  Stack,
   styled,
+  Typography,
   Container,
+  Box,
 } from '@mui/material';
 import routes from 'navigation/routes';
 import { useParams, Navigate } from 'react-router-dom';
@@ -14,6 +14,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-cube';
 import Img from 'components/ui/img';
+
+import * as Styled from './styled';
 
 const StyledSwiper = styled(Swiper)({
   width: '100%',
@@ -37,17 +39,25 @@ const SingleCarPage = () => {
   if (car === undefined) return null;
 
   return (
-    <Container>
-      <Box component="pre">
-        {JSON.stringify(car, null, 4)}
-      </Box>
-      <Box sx={{
-        width: 500,
-        height: 400,
-        margin: 'auto',
-        position: 'relative',
-      }}
-      >
+    <Container sx={Styled.BreakpointSwiper}>
+      <Box>
+        <Typography variant="h4">
+          Brand:
+          {' '}
+          {car.brands}
+        </Typography>
+        <Typography variant="h5">
+          Location:
+          {' '}
+          {car.location.city}
+          {' '}
+          {car.location.country}
+        </Typography>
+        <Typography variant="h5">
+          Style:
+          {' '}
+          {car.style}
+        </Typography>
         <StyledSwiper
           effect="cube"
           grabCursor
@@ -69,24 +79,6 @@ const SingleCarPage = () => {
             </SwiperSlide>
           ))}
         </StyledSwiper>
-        <Stack sx={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          zIndex: 3000,
-          justifyContent: 'center',
-        }}
-        />
-        <Stack sx={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          right: 0,
-          zIndex: 3000,
-          justifyContent: 'center',
-        }}
-        />
       </Box>
     </Container>
   );
