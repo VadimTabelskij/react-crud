@@ -30,8 +30,6 @@ const CarFormPage = () => {
     navigate(routes.HomePage);
     try {
       const values = getCarFormValues(formRef.current);
-      console.log('Vykdomas sukūrimas');
-      console.log(values);
       carDataCreate(values);
     } catch (error) {
       if (error instanceof Error) {
