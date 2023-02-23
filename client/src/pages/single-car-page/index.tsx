@@ -7,14 +7,13 @@ import {
 } from '@mui/material';
 import routes from 'navigation/routes';
 import { useParams, Navigate } from 'react-router-dom';
-import ApiService from 'services/api-service';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCube, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-cube';
 import Img from 'components/ui/img';
-
+import useCar from 'hooks/use-car';
 import * as Styled from './styled';
 
 const StyledSwiper = styled(Swiper)({
@@ -24,16 +23,7 @@ const StyledSwiper = styled(Swiper)({
 
 const SingleCarPage = () => {
   const { id } = useParams();
-  const [car, setCar] = React.useState<CarsModel | undefined >(undefined);
-
-  React.useEffect(() => {
-    if (id !== undefined) {
-      (async () => {
-        const fetchCar = await ApiService.fetchCar(id);
-        setCar(fetchCar);
-      })();
-    }
-  }, []);
+  const [car] = useCar(id);
 
   if (id === undefined) return <Navigate to={routes.HomePage} />;
   if (car === undefined) return null;

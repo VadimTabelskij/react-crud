@@ -9,14 +9,18 @@ import {
 } from '@mui/material';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ApiService from 'services/api-service';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import routes from 'navigation/routes';
+import useCar from 'hooks/use-car';
 import LocationField from './location-field';
 import ImagesField from './images-field';
 import * as Styled from './styled';
 import { getCarFormValues } from './helpers';
 
 const CarFormPage = () => {
+  const { id } = useParams();
+  const [car, loadingCarData] = useCar(id);
+
   const formRef = React.useRef<undefined | HTMLFormElement>(undefined);
   const navigate = useNavigate();
 
@@ -35,6 +39,11 @@ const CarFormPage = () => {
       }
     }
   };
+
+  if (loadingCarData) return null;
+
+  console.log('ATNAUJINAME DUOMENIS');
+  console.log(car);
 
   return (
     <Styled.PageLayout>

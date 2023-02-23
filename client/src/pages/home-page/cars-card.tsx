@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import {
   Typography,
@@ -9,6 +10,7 @@ import List from '@mui/material/List';
 import { useNavigate } from 'react-router-dom';
 import routes from 'navigation/routes';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AutoFixNormalIcon from '@mui/icons-material/AutoFixNormal';
 import * as Styled from './styled';
 
 type CarsCardProps = CarsModel;
@@ -41,6 +43,21 @@ const CarsCard: React.FC<CarsCardProps> = ({
           onClick={() => console.log(`ApiService  per naujo atsiųsiu visus duomenis. mano id '${id}'`)}
         >
           <DeleteIcon />
+        </Button>
+        <Button
+          variant="contained"
+          color="warning"
+          size="small"
+          sx={{
+            position: 'absolute',
+            right: 55,
+            top: 7,
+            minWidth: 'initial',
+            p: 0.5,
+          }}
+          onClick={() => navigate(routes.UpdateCarPage.createLink(id))}
+        >
+          <AutoFixNormalIcon />
         </Button>
         <Img src={images[2]} alt="" sx={{ aspectRatio: '1.42', width: 1, height: 1 }} />
         <List>

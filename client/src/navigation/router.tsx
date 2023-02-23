@@ -2,8 +2,8 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import NavbarLayout from 'components/layouts/navbar-layout';
 import HomePage from 'pages/home-page';
-import SingleCarPage from 'pages/home-page/single-car-page';
-import CarFormPage from 'pages/home-page/car-form-page';
+import CarFormPage from 'pages/car-form-page';
+import SingleCarPage from 'pages/single-car-page';
 import routes from './routes';
 
 const router = createBrowserRouter([
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
       },
       {
         path: routes.CarFormPage,
+        element: <CarFormPage />,
+      },
+      {
+        path: routes.UpdateCarPage.path,
         element: <CarFormPage />,
       },
     ],
