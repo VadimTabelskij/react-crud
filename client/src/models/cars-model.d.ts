@@ -1,5 +1,4 @@
 type CarsModel = {
-
   id: string,
   brands: string,
   location: {

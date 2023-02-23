@@ -21,9 +21,16 @@ const fetchCar = async (id: string | number) => {
   return response.data;
 };
 
+const createCar = async (animalData: Omit<CarsModel, 'id'>) => {
+  const response = await api.post<CarsModel>('/cars', animalData);
+
+  return response.data;
+};
+
 const ApiService = {
   fetchCars,
   fetchCar,
+  createCar,
 };
 
 export default ApiService;
