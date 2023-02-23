@@ -29,42 +29,32 @@ const CarsCard: React.FC<CarsCardProps> = ({
 
     <Stack sx={{ boxShadow: 4, position: 'relative' }}>
       <Styled.CarsCardContent>
-        <Button
-          variant="contained"
-          color="error"
-          size="small"
-          sx={{
-            position: 'absolute',
-            right: 16,
-            top: 7,
-            minWidth: 'initial',
-            p: 0.5,
-          }}
-          onClick={() => console.log(`ApiService  per naujo atsiųsiu visus duomenis. mano id '${id}'`)}
-        >
-          <DeleteIcon />
-        </Button>
-        <Button
-          variant="contained"
-          color="warning"
-          size="small"
-          sx={{
-            position: 'absolute',
-            right: 55,
-            top: 7,
-            minWidth: 'initial',
-            p: 0.5,
-          }}
-          onClick={() => navigate(routes.UpdateCarPage.createLink(id))}
-        >
-          <AutoFixNormalIcon />
-        </Button>
+        <Styled.ActionButtons>
+          <Button
+            variant="contained"
+            color="warning"
+            sx={{ minWidth: 'initial', p: 0.5 }}
+            onClick={() => navigate(routes.UpdateCarPage.createLink(id))}
+          >
+            <AutoFixNormalIcon />
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            sx={{ minWidth: 'initial', p: 0.5 }}
+            onClick={() => console.log(`ApiService  per naujo atsiųsiu visus duomenis. mano id '${id}'`)}
+          >
+            <DeleteIcon />
+          </Button>
+        </Styled.ActionButtons>
         <Img src={images[2]} alt="" sx={{ aspectRatio: '1.42', width: 1, height: 1 }} />
         <List>
           <Styled.CarsCardTarget>
-            <Typography variant="subtitle2" sx={{ color: 'warning.main' }}>{brands}</Typography>
-            <Typography variant="subtitle2" sx={{ color: 'error.dark' }}>{`${location.country}, ${location.city}`}</Typography>
-            <Typography variant="subtitle2" sx={{ color: 'secondary.main' }}>{style}</Typography>
+            <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>{brands}</Typography>
+            <Typography variant="subtitle2" sx={{ color: 'success.main' }}>
+              {`${location.country}, ${location.city}`}
+            </Typography>
+            <Typography variant="subtitle2" sx={{ color: 'error.main' }}>{style}</Typography>
           </Styled.CarsCardTarget>
         </List>
         <Button

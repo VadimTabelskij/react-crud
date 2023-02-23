@@ -27,3 +27,13 @@ export const CarsCardTarget = styled('div')(({ theme }) => ({
   padding: theme.spacing(1, 2),
   textTransform: 'uppercase',
 }));
+
+export const ActionButtons = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  right: 16,
+  top: 8,
+  display: 'flex',
+  gap: theme.spacing(0.5),
+  size: 'small',
+  variant: 'contained',
+}));

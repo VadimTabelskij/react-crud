@@ -3,6 +3,7 @@ import {
   Stack,
   Typography,
   TextField,
+  TextFieldProps,
   Box,
   InputAdornment,
   IconButton,
@@ -13,7 +14,13 @@ import NoCrashIcon from '@mui/icons-material/NoCrash';
 
 const initialIds = [createId()];
 
-const ImagesField = () => {
+type ImagesFieldProps = {
+  color: TextFieldProps['color']
+  colorMain: string,
+
+};
+
+const ImagesField: React.FC<ImagesFieldProps> = ({ color, colorMain }) => {
   const [imgFieldsIds, setImgFieldsIds] = React.useState<string[]>(initialIds);
 
   const addImgField = () => setImgFieldsIds([...imgFieldsIds, createId()]);
@@ -35,6 +42,7 @@ const ImagesField = () => {
             fullWidth
             variant="filled"
             size="small"
+            color={color}
             InputProps={imgFieldsIds.length > 1 ? {
               endAdornment: (
                 <InputAdornment position="end">
@@ -48,7 +56,7 @@ const ImagesField = () => {
         ))}
       </Stack>
       <IconButton onClick={addImgField}>
-        <NoCrashIcon sx={{ fontSize: 38, color: 'primary.main' }} />
+        <NoCrashIcon sx={{ fontSize: 38, color: colorMain }} />
       </IconButton>
     </Box>
   );

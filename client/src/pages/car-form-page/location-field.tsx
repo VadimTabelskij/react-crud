@@ -1,10 +1,16 @@
 import React from 'react';
 import {
   TextField,
+  TextFieldProps,
   Box,
 } from '@mui/material';
 
-const LocationField = () => (
+type LocationFieldProps = {
+  color: TextFieldProps['color'],
+
+};
+
+const LocationField: React.FC<LocationFieldProps> = ({ color }) => (
   <Box sx={{ display: 'flex', width: 1, gap: 2 }}>
     <TextField
       label="Country"
@@ -12,6 +18,7 @@ const LocationField = () => (
       fullWidth
       variant="filled"
       size="small"
+      color={color}
     />
     <TextField
       label="City"
@@ -19,6 +26,7 @@ const LocationField = () => (
       fullWidth
       variant="filled"
       size="small"
+      color={color}
     />
   </Box>
 );

@@ -16,6 +16,7 @@ import LocationField from './location-field';
 import ImagesField from './images-field';
 import * as Styled from './styled';
 import { getCarFormValues } from './helpers';
+import { getModeData } from './data';
 
 const CarFormPage = () => {
   const { id } = useParams();
@@ -23,6 +24,14 @@ const CarFormPage = () => {
 
   const formRef = React.useRef<undefined | HTMLFormElement>(undefined);
   const navigate = useNavigate();
+
+  const mode = id !== undefined ? 'edit' : 'create';
+  const {
+    title,
+    btnText,
+    color,
+    colorMain,
+  } = getModeData(mode);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -54,33 +63,34 @@ const CarFormPage = () => {
           onSubmit={handleSubmit}
           ref={formRef}
         >
-          <DirectionsCarIcon sx={{ fontSize: 60, color: 'primary.main' }} />
-          <Typography variant="h4" color="primary">Create new brand</Typography>
+          <DirectionsCarIcon sx={{ fontSize: 60, color: colorMain }} />
+          <Typography variant="h4" color={colorMain}>{title}</Typography>
           <TextField
             label="Brands"
             name="brands"
             fullWidth
             variant="filled"
             size="small"
+            color={color}
           />
-          <LocationField />
+          <LocationField color={color} />
           <TextField
             label="Style"
             name="style"
             fullWidth
             variant="filled"
             size="small"
+            color={color}
           />
-          <ImagesField />
+          <ImagesField color={color} colorMain={colorMain} />
           <Button
             variant="contained"
-            color="primary"
+            color={color}
             size="large"
             fullWidth
             type="submit"
           >
-            Create
-
+            {btnText}
           </Button>
         </Stack>
       </Styled.Paper>
