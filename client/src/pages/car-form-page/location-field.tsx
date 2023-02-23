@@ -7,10 +7,15 @@ import {
 
 type LocationFieldProps = {
   color: TextFieldProps['color'],
-
+  defaultCountry?: string,
+  defaultCity?: string,
 };
 
-const LocationField: React.FC<LocationFieldProps> = ({ color }) => (
+const LocationField: React.FC<LocationFieldProps> = ({
+  color,
+  defaultCountry,
+  defaultCity,
+}) => (
   <Box sx={{ display: 'flex', width: 1, gap: 2 }}>
     <TextField
       label="Country"
@@ -19,6 +24,7 @@ const LocationField: React.FC<LocationFieldProps> = ({ color }) => (
       variant="filled"
       size="small"
       color={color}
+      defaultValue={defaultCountry}
     />
     <TextField
       label="City"
@@ -27,6 +33,7 @@ const LocationField: React.FC<LocationFieldProps> = ({ color }) => (
       variant="filled"
       size="small"
       color={color}
+      defaultValue={defaultCity}
     />
   </Box>
 );

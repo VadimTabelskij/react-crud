@@ -17,11 +17,22 @@ const initialIds = [createId()];
 type ImagesFieldProps = {
   color: TextFieldProps['color']
   colorMain: string,
-
+  defaultImages?: string[],
 };
 
-const ImagesField: React.FC<ImagesFieldProps> = ({ color, colorMain }) => {
-  const [imgFieldsIds, setImgFieldsIds] = React.useState<string[]>(initialIds);
+const ImagesField: React.FC<ImagesFieldProps> = ({ color, colorMain, defaultImages }) => {
+  const imgMap = React.useMemo(
+    () => defaultImages && defaultImages.reduce<{ [key: string]: string }>((prevMap, img) => ({
+      ...prevMap,
+      [createId()]: img,
+    }), {}),
+    [],
+  );
+
+  const [
+    imgFieldsIds,
+    setImgFieldsIds,
+  ] = React.useState<string[]>((imgMap && Object.keys(imgMap)) || initialIds);
 
   const addImgField = () => setImgFieldsIds([...imgFieldsIds, createId()]);
   const removeImgField = (id: string) => {
@@ -43,6 +54,7 @@ const ImagesField: React.FC<ImagesFieldProps> = ({ color, colorMain }) => {
             variant="filled"
             size="small"
             color={color}
+            defaultValue={imgMap && imgMap[id]}
             InputProps={imgFieldsIds.length > 1 ? {
               endAdornment: (
                 <InputAdornment position="end">

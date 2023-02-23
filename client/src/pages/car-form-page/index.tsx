@@ -37,9 +37,16 @@ const CarFormPage = () => {
     event.preventDefault();
     try {
       const values = getCarFormValues(formRef.current);
-      await ApiService.createCar(values);
 
-      navigate(routes.HomePage);
+      if (mode === 'create') {
+        await ApiService.createCar(values);
+        navigate(routes.HomePage);
+      } else {
+        // TODO: Atlikti atnaujinimo darbus ir po sukurimo, nuvesti į
+        // TODO: pagrindinį puslapį arba atnaujinto produkto puslapį
+        console.log('Vykdomas atnaujinimas');
+        console.log({ id, ...values });
+      }
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
@@ -50,9 +57,6 @@ const CarFormPage = () => {
   };
 
   if (loadingCarData) return null;
-
-  console.log('ATNAUJINAME DUOMENIS');
-  console.log(car);
 
   return (
     <Styled.PageLayout>
@@ -72,8 +76,13 @@ const CarFormPage = () => {
             variant="filled"
             size="small"
             color={color}
+            defaultValue={car?.brands}
           />
-          <LocationField color={color} />
+          <LocationField
+            color={color}
+            defaultCountry={car?.location.country}
+            defaultCity={car?.location.city}
+          />
           <TextField
             label="Style"
             name="style"
@@ -81,8 +90,9 @@ const CarFormPage = () => {
             variant="filled"
             size="small"
             color={color}
+            defaultValue={car?.style}
           />
-          <ImagesField color={color} colorMain={colorMain} />
+          <ImagesField color={color} colorMain={colorMain} defaultImages={car?.images} />
           <Button
             variant="contained"
             color={color}
