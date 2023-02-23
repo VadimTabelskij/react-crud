@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 import React from 'react';
 import {
   Stack,
@@ -6,6 +8,9 @@ import {
   Button,
 } from '@mui/material';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import ApiService from 'services/api-service';
+import { useNavigate } from 'react-router-dom';
+import routes from 'navigation/routes';
 import LocationField from './location-field';
 import ImagesField from './images-field';
 import * as Styled from './styled';
@@ -14,12 +19,20 @@ import { getCarFormValues } from './helpers';
 const CarFormPage = () => {
   const formRef = React.useRef<undefined | HTMLFormElement>(undefined);
 
+  const carDataCreate = async (carsData: Omit<CarsModel, 'id'>) => {
+    await ApiService.createCar(carsData);
+  };
+
+  const navigate = useNavigate();
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    navigate(routes.HomePage);
     try {
       const values = getCarFormValues(formRef.current);
       console.log('Vykdomas sukūrimas');
       console.log(values);
+      carDataCreate(values);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
