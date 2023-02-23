@@ -18,19 +18,15 @@ import { getCarFormValues } from './helpers';
 
 const CarFormPage = () => {
   const formRef = React.useRef<undefined | HTMLFormElement>(undefined);
-
-  const carDataCreate = async (carsData: Omit<CarsModel, 'id'>) => {
-    await ApiService.createCar(carsData);
-  };
-
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    navigate(routes.HomePage);
     try {
       const values = getCarFormValues(formRef.current);
-      carDataCreate(values);
+      await ApiService.createCar(values);
+
+      navigate(routes.HomePage);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
