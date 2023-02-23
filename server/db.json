@@ -167,6 +167,20 @@
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR58HppXXPZahpmo8R60bdNJ0LoWi3moRd8hY7LLt7SrdlytOmaKtB07kP_-QKtM0PltuM&usqp=CAU"
       ],
       "style": "Sport Car"
+    },
+    {
+      "brands": "Mercedes-Benz",
+      "location": {
+        "city": "Vilniu",
+        "country": "Lithuania"
+      },
+      "style": "New Car",
+      "images": [
+        "https://pictures.dealer.com/m/mercedesbenzofcoloradospringsmb/0593/a50119193465584035fdc517530588f5x.jpg",
+        "https://cdn.motor1.com/images/mgl/M7P06/s1/2020-mercedes-benz-e-klasse.jpg",
+        "https://motorsactu.com/wp-content/uploads/2020/03/Mercedes-Benz-GLA-2021-1280-15.jpg"
+      ],
+      "id": "tuKWXaq"
     }
   ]
 }
