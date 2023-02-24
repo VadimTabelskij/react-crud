@@ -49,7 +49,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
             <DeleteIcon />
           </Button>
         </Styled.ActionButtons>
-        <Img src={images[2]} alt="" sx={{ aspectRatio: '1.42', width: 1, height: 1 }} />
+        <Img src={images[0]} alt="" sx={{ aspectRatio: '1.42', width: 1, height: 1 }} />
         <List>
           <Styled.CarsCardTarget>
             <Typography variant="subtitle2" sx={{ color: 'primary.main' }}>{brands}</Typography>

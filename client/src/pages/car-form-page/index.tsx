@@ -1,12 +1,6 @@
-/* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React from 'react';
-import {
-  Stack,
-  Typography,
-  TextField,
-  Button,
-} from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ApiService from 'services/api-service';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -17,6 +11,9 @@ import ImagesField from './images-field';
 import * as Styled from './styled';
 import { getCarFormValues } from './helpers';
 import { getModeData } from './data';
+import StyleField from './style-field';
+import BrandField from './brand-field';
+import ButtonField from './button-field';
 
 const CarFormPage = () => {
   const { id } = useParams();
@@ -41,11 +38,9 @@ const CarFormPage = () => {
       if (mode === 'create') {
         await ApiService.createCar(values);
         navigate(routes.HomePage);
-      } else {
-        // TODO: Atlikti atnaujinimo darbus ir po sukurimo, nuvesti į
-        // TODO: pagrindinį puslapį arba atnaujinto produkto puslapį
-        console.log('Vykdomas atnaujinimas');
-        console.log({ id, ...values });
+      } else if (mode === 'edit' && id !== undefined) {
+        await ApiService.updateCar(id, values);
+        navigate(routes.SingleCarPage.createLink(id));
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -69,39 +64,15 @@ const CarFormPage = () => {
         >
           <DirectionsCarIcon sx={{ fontSize: 60, color: colorMain }} />
           <Typography variant="h4" color={colorMain}>{title}</Typography>
-          <TextField
-            label="Brands"
-            name="brands"
-            fullWidth
-            variant="filled"
-            size="small"
-            color={color}
-            defaultValue={car?.brands}
-          />
+          <BrandField color={color} defualtBrand={car?.brands} />
           <LocationField
             color={color}
             defaultCountry={car?.location.country}
             defaultCity={car?.location.city}
           />
-          <TextField
-            label="Style"
-            name="style"
-            fullWidth
-            variant="filled"
-            size="small"
-            color={color}
-            defaultValue={car?.style}
-          />
+          <StyleField color={color} defualtStyle={car?.style} />
           <ImagesField color={color} colorMain={colorMain} defaultImages={car?.images} />
-          <Button
-            variant="contained"
-            color={color}
-            size="large"
-            fullWidth
-            type="submit"
-          >
-            {btnText}
-          </Button>
+          <ButtonField color={color} btnText={btnText} />
         </Stack>
       </Styled.Paper>
     </Styled.PageLayout>
