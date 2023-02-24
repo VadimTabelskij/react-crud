@@ -17,13 +17,25 @@ const HomePage = () => {
     })();
   }, []);
 
+  const onDelete = async (id: string) => {
+    await ApiService.deleteCar(id);
+    const fetchedCars = await ApiService.fetchCars();
+    setCars(fetchedCars);
+  };
+
   return (
     <Container sx={{ mt: 2 }}>
       <Button variant="contained" onClick={() => navigate(routes.CarFormPage)}>
         Created New
       </Button>
       <Styled.CarsGrid>
-        {cars.map((carsProps) => (<CarsCard key={carsProps.id} {...carsProps} />))}
+        {cars.map((carsProps) => (
+          <CarsCard
+            key={carsProps.id}
+            {...carsProps}
+            onDelete={() => onDelete(carsProps.id)}
+          />
+        ))}
       </Styled.CarsGrid>
     </Container>
   );

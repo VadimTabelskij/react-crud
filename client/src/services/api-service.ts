@@ -9,28 +9,35 @@ const api = axios.create({
   },
 });
 
+const dataIpLink = '/cars';
+
 const fetchCars = async () => {
-  const response = await api.get<CarsModel[]>('/cars');
+  const response = await api.get<CarsModel[]>(dataIpLink);
 
   return response.data;
 };
 
 const fetchCar = async (id: string | number) => {
-  const response = await api.get<CarsModel>(`/cars/${id}`);
+  const response = await api.get<CarsModel>(`${dataIpLink}/${id}`);
 
   return response.data;
 };
 
 const createCar = async (carsData: Omit<CarsModel, 'id'>) => {
-  const response = await api.post<CarsModel>('/cars', carsData);
+  const response = await api.post<CarsModel>(dataIpLink, carsData);
 
   return response.data;
+};
+
+const deleteCar = async (id: string) => {
+  await api.delete(`${dataIpLink}/${id}`);
 };
 
 const ApiService = {
   fetchCars,
   fetchCar,
   createCar,
+  deleteCar,
 };
 
 export default ApiService;

@@ -35,5 +35,4 @@ export const ActionButtons = styled('div')(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(0.5),
   size: 'small',
-  variant: 'contained',
 }));

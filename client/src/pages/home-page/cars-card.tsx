@@ -13,7 +13,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AutoFixNormalIcon from '@mui/icons-material/AutoFixNormal';
 import * as Styled from './styled';
 
-type CarsCardProps = CarsModel;
+type CarsCardProps = CarsModel & {
+  onDelete: VoidFunction,
+};
 
 const CarsCard: React.FC<CarsCardProps> = ({
   id,
@@ -21,7 +23,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
   location,
   images,
   style,
-
+  onDelete,
 }) => {
   const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
             variant="contained"
             color="error"
             sx={{ minWidth: 'initial', p: 0.5 }}
-            onClick={() => console.log(`ApiService  per naujo atsiųsiu visus duomenis. mano id '${id}'`)}
+            onClick={onDelete}
           >
             <DeleteIcon />
           </Button>
